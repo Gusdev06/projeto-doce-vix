@@ -44,7 +44,7 @@ Este projeto representa a API oficial do restaurante Doce Vix, construída com a
 5. [PrismaORM](https://www.prisma.io/)
 6. [Multer](https://github.com/expressjs/multer)
 7. [JWT (JSON Web Tokens)](https://jwt.io/)
-8. [Docker]([https://jwt.io/](https://www.docker.com/))
+8. [Docker](https://www.docker.com)
 
 
 ## Rodar
