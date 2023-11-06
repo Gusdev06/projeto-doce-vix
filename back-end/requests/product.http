@@ -3,5 +3,37 @@
 
 GET http://localhost:3333/products HTTP/1.1
 
+####
+POST http://localhost:3333/products HTTP/1.1
+Content-Type: application/json
 
+{
+   "name":"X BACODN",
+   "description":"Pao, alface bacon e molho",
+   "categoryGuid":"aa7718c0-f772-4561-a223-2510bb8c3353",
+   "price":19.99,
+   "dayOfWeek":"Segunda"
+}
+
+
+####
+POST http://localhost:3333/orders HTTP/1.1
+Content-Type: application/json
+
+{
+   "userId": 1,
+   "total": 0,
+   "orderItem": [{
+    "productId": 1,
+    "quantity": 12
+   },
+   {
+    "productId": 1,
+    "quantity": 12
+   },
+   {
+    "productId": 1,
+    "quantity": 12
+   }]
+}
 

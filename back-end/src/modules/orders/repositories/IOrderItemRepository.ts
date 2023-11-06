@@ -1,7 +1,7 @@
 import { IOrderItem } from "../models/IOrderItem";
 
 interface ICreateOrderItemDTO {
-    orderId: number;
+    orderId?: number;
     productId: number;
     quantity: number;
 }

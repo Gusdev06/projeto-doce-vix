@@ -14,11 +14,12 @@ class CreateOrderController implements IController {
         next: NextFunction,
     ): Promise<void | Response<any, Record<string, any>>> {
         try {
-            const { userId, total } = request.body;
+            const { userId, total, orderItem } = request.body;
 
             const order = await this.useCase.execute({
                 userId,
                 total,
+                orderItem
             });
 
             return response.status(HttpStatusCode.CREATED).json(order);

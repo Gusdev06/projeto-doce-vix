@@ -10,12 +10,13 @@ import {
     IProductRepository,
 } from "../repositories/IProductRepository";
 import { CreateProductValidator } from "./validation/CreateProductValidator";
+import { CategoryCheckExists } from "@/modules/category/services/validation/CategoryCheckExists";
 
 export class CreateProductService
     implements IService<ICreateProductDTO, IProduct>
 {
     constructor(
-        private readonly createCategoryValidator: CreateCategoryValidator,
+        private readonly categoryCheckExists: CategoryCheckExists,
         private readonly dayOfWeekCheckExists: DayOfWeekCheckExistsValidator,
         private readonly createProductValidator: CreateProductValidator,
         private readonly productRepository: IProductRepository,
@@ -28,10 +29,9 @@ export class CreateProductService
         categoryGuid,
         dayOfWeek,
     }: ICreateProductDTO): Promise<IProduct> {
-        await this.createCategoryValidator.validate({
-            name: categoryGuid,
-            description: "",
-        });
+        await this.categoryCheckExists.validate(
+            categoryGuid
+        );
 
         if (dayOfWeek) await this.dayOfWeekCheckExists.validate(dayOfWeek);
 
