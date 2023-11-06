@@ -107,19 +107,14 @@ class UserPrismaRepository implements IUserRepository {
     }: IListUsersRequest): Promise<IListUsersResponse | undefined> {
         const where = search
             ? {
-                  OR: [
-                      {
-                          name: {
-                              contains: search,
-                          },
-                      },
-                      {
-                          description: {
-                              contains: search,
-                          },
-                      },
-                  ],
-              }
+                OR: [
+                    {
+                        name: {
+                            contains: search,
+                        },
+                    },
+                ],
+            }
             : undefined;
 
         const count = await this.prismaClient.user.count({
@@ -160,3 +155,4 @@ class UserPrismaRepository implements IUserRepository {
 }
 
 export { UserPrismaRepository };
+

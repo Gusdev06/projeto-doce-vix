@@ -6,7 +6,7 @@ import { IController } from "@/shared/infra/protocols/IController";
 import { CreateOrderUseCase } from "./CreateOrderUseCase";
 
 class CreateOrderController implements IController {
-    constructor(private readonly useCase: CreateOrderUseCase) {}
+    constructor(private readonly useCase: CreateOrderUseCase) { }
 
     async handle(
         request: Request,
