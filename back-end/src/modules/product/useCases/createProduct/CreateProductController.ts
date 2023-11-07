@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { NextFunction, Request, Response } from "express";
 
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { IController } from "@/shared/infra/protocols/IController";
@@ -13,8 +13,14 @@ class CreateProductController implements IController {
         next: NextFunction,
     ): Promise<void | Response<any, Record<string, any>>> {
         try {
-            const { name, description, categoryGuid, price, dayOfWeek } =
-                request.body;
+            const {
+                name,
+                description,
+                categoryGuid,
+                price,
+                dayOfWeek,
+                fileGuid,
+            } = request.body;
 
             const product = await this.useCase.execute({
                 name,
@@ -22,6 +28,7 @@ class CreateProductController implements IController {
                 categoryGuid,
                 price,
                 dayOfWeek,
+                fileGuid,
             });
 
             return response.status(HttpStatusCode.CREATED).json(product);

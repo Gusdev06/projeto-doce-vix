@@ -26,14 +26,6 @@ Content-Type: application/json
    "orderItem": [{
     "productId": 1,
     "quantity": 12
-   },
-   {
-    "productId": 1,
-    "quantity": 12
-   },
-   {
-    "productId": 1,
-    "quantity": 12
    }]
 }
 

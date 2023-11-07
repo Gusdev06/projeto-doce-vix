@@ -42,6 +42,7 @@ class ProductPrismaRepository implements IProductRepository {
         price,
         categoryGuid,
         dayOfWeek,
+        fileGuid,
     }: I.ICreateProductDTO): Promise<IProduct | undefined> {
         const categoriesP = await this.prismaClient.category.findFirst({
             where: {
@@ -61,6 +62,14 @@ class ProductPrismaRepository implements IProductRepository {
             });
         }
 
+        const filesP = await this.prismaClient.file.findFirst({
+            where: {
+                guid: fileGuid,
+            },
+        });
+
+        if (!filesP) return undefined;
+
         const productP = await this.prismaClient.product.create({
             data: {
                 name,
@@ -68,6 +77,7 @@ class ProductPrismaRepository implements IProductRepository {
                 price,
                 categoryId: categoriesP.id,
                 dayOfWeekId: dayOfWeekP?.id,
+                fileId: filesP.id,
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
@@ -151,26 +161,26 @@ class ProductPrismaRepository implements IProductRepository {
     }: I.IListProductRequest): Promise<I.IListProductResponse | undefined> {
         const where = search
             ? {
-                OR: [
-                    {
-                        name: {
-                            contains: search,
-                        },
-                    },
-                    {
-                        description: {
-                            contains: search,
-                        },
-                    },
-                    {
-                        category: {
-                            name: {
-                                contains: search,
-                            }
-                        },
-                    },
-                ],
-            }
+                  OR: [
+                      {
+                          name: {
+                              contains: search,
+                          },
+                      },
+                      {
+                          description: {
+                              contains: search,
+                          },
+                      },
+                      {
+                          category: {
+                              name: {
+                                  contains: search,
+                              },
+                          },
+                      },
+                  ],
+              }
             : undefined;
 
         const count = await this.prismaClient.product.count({
@@ -222,13 +232,13 @@ class ProductPrismaRepository implements IProductRepository {
     async findByGuid(guid: string): Promise<IProduct | undefined> {
         const productP = await this.prismaClient.product.findUnique({
             where: {
-                guid: guid
+                guid,
             },
             include: {
                 files: true,
                 category: true,
                 dayOfWeek: true,
-            }
+            },
         });
 
         if (!productP) return undefined;
@@ -238,4 +248,3 @@ class ProductPrismaRepository implements IProductRepository {
 }
 
 export { ProductPrismaRepository };
-

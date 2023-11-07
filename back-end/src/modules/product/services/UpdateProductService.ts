@@ -24,6 +24,7 @@ export class UpdateProductService
         categoryGuid,
         price,
         dayOfWeek,
+        fileGuid,
     }: IUpdateProductDTO): Promise<IProduct> {
         await this.updateProductValidator.validate({
             guid,
@@ -32,6 +33,7 @@ export class UpdateProductService
             categoryGuid,
             price,
             dayOfWeek,
+            fileGuid,
         });
 
         const product = await this.repository.update({
@@ -41,6 +43,7 @@ export class UpdateProductService
             categoryGuid,
             price,
             dayOfWeek,
+            fileGuid,
         });
 
         if (!product)

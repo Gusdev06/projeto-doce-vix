@@ -16,7 +16,6 @@ export interface IProductPrisma
 export class ProductPrismaFactory
     implements IDefaultFactory<IProductPrisma, IProduct>
 {
-
     async generate(entity: IProductPrisma): Promise<IProduct> {
         const {
             id,
@@ -38,12 +37,12 @@ export class ProductPrismaFactory
             price,
             files: files
                 ? {
-                    id: files.id,
-                    guid: files.guid,
-                    path: files.path,
-                    createdAt: files.createdAt,
-                    updatedAt: files.updatedAt,
-                }
+                      id: files.id,
+                      guid: files.guid,
+                      path: files.path,
+                      createdAt: files.createdAt,
+                      updatedAt: files.updatedAt,
+                  }
                 : undefined,
             category: {
                 id: category.id,
@@ -56,12 +55,12 @@ export class ProductPrismaFactory
 
             dayOfWeek: dayOfWeek
                 ? {
-                    id: dayOfWeek.id,
-                    guid: dayOfWeek.guid,
-                    name: dayOfWeek.name,
-                    createdAt: dayOfWeek.createdAt,
-                    updatedAt: dayOfWeek.updatedAt,
-                }
+                      id: dayOfWeek.id,
+                      guid: dayOfWeek.guid,
+                      name: dayOfWeek.name,
+                      createdAt: dayOfWeek.createdAt,
+                      updatedAt: dayOfWeek.updatedAt,
+                  }
                 : undefined,
             createdAt,
             updatedAt,

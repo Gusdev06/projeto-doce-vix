@@ -4,7 +4,7 @@ import { ICreateOrderItemDTO } from "./IOrderItemRepository";
 interface ICreateOrderDTO {
     userId: number;
     total: number;
-    orderItem?: ICreateOrderItemDTO[]
+    orderItem?: ICreateOrderItemDTO[];
 }
 
 interface IListOrdersResponse {
@@ -33,3 +33,4 @@ export {
     IListOrdersResponse,
     IOrderRepository,
 };
+

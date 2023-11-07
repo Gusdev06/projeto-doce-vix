@@ -15,6 +15,7 @@ export class CreateProductUseCase
         price,
         categoryGuid,
         dayOfWeek,
+        fileGuid,
     }: ICreateProductDTO): Promise<IProduct> {
         return this.createProductService.execute({
             name,
@@ -22,6 +23,7 @@ export class CreateProductUseCase
             price,
             categoryGuid,
             dayOfWeek,
+            fileGuid,
         });
     }
 }

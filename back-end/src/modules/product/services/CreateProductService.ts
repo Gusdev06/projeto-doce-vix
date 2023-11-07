@@ -1,4 +1,4 @@
-import { CreateCategoryValidator } from "@/modules/category/services/validation/CreateCategoryValidate";
+import { CategoryCheckExists } from "@/modules/category/services/validation/CategoryCheckExists";
 import { DayOfWeekCheckExistsValidator } from "@/modules/dayOfWeek/services/validation/DayOfWeekCheckExistsValidator";
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
@@ -10,7 +10,6 @@ import {
     IProductRepository,
 } from "../repositories/IProductRepository";
 import { CreateProductValidator } from "./validation/CreateProductValidator";
-import { CategoryCheckExists } from "@/modules/category/services/validation/CategoryCheckExists";
 
 export class CreateProductService
     implements IService<ICreateProductDTO, IProduct>
@@ -28,11 +27,8 @@ export class CreateProductService
         price,
         categoryGuid,
         dayOfWeek,
+        fileGuid,
     }: ICreateProductDTO): Promise<IProduct> {
-        await this.categoryCheckExists.validate(
-            categoryGuid
-        );
-
         if (dayOfWeek) await this.dayOfWeekCheckExists.validate(dayOfWeek);
 
         await this.createProductValidator.validate({
@@ -41,6 +37,7 @@ export class CreateProductService
             price,
             categoryGuid,
             dayOfWeek,
+            fileGuid,
         });
 
         const product = await this.productRepository.create({
@@ -49,6 +46,7 @@ export class CreateProductService
             price,
             categoryGuid,
             dayOfWeek,
+            fileGuid,
         });
 
         if (!product)

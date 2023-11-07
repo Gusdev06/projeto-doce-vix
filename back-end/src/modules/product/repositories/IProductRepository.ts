@@ -6,6 +6,7 @@ interface ICreateProductDTO {
     price: number;
     categoryGuid: string;
     dayOfWeek?: string;
+    fileGuid: string;
 }
 
 interface IUpdateProductDTO {
@@ -15,6 +16,7 @@ interface IUpdateProductDTO {
     categoryGuid?: string;
     price?: number;
     dayOfWeek?: string;
+    fileGuid: string;
 }
 
 interface IListProductResponse {
@@ -36,6 +38,7 @@ interface IProductRepository {
         price,
         categoryGuid,
         dayOfWeek,
+        fileGuid,
     }: ICreateProductDTO): Promise<IProduct | undefined>;
     update({
         guid,
@@ -44,6 +47,7 @@ interface IProductRepository {
         price,
         categoryGuid,
         dayOfWeek,
+        fileGuid,
     }: IUpdateProductDTO): Promise<IProduct | undefined>;
     delete(guid: string): Promise<IProduct | undefined>;
     list({
@@ -61,6 +65,5 @@ export {
     IListProductRequest,
     IListProductResponse,
     IProductRepository,
-    IUpdateProductDTO
+    IUpdateProductDTO,
 };
-

@@ -19,9 +19,7 @@
             "post": {
                 "summary": "Cria uma categoria",
                 "description": "Cria uma categoria",
-                "tags": [
-                    "Categories"
-                ],
+                "tags": ["Categories"],
                 "security": [
                     {
                         "bearerAuth": []
@@ -74,9 +72,7 @@
             },
             "get": {
                 "summary": "Lista todas as categorias / Busca categoria por nome",
-                "tags": [
-                    "Categories"
-                ],
+                "tags": ["Categories"],
                 "parameters": [
                     {
                         "name": "q",
@@ -118,9 +114,7 @@
             },
             "put": {
                 "summary": "Atualiza uma categoria existente",
-                "tags": [
-                    "Categories"
-                ],
+                "tags": ["Categories"],
                 "security": [
                     {
                         "bearerAuth": []
@@ -158,9 +152,7 @@
         "/categories/{guid}": {
             "delete": {
                 "summary": "Deleta uma categoria existente",
-                "tags": [
-                    "Categories"
-                ],
+                "tags": ["Categories"],
                 "security": [
                     {
                         "bearerAuth": []
@@ -197,9 +189,7 @@
             "post": {
                 "summary": "Cria um produto",
                 "description": "Cria um produto",
-                "tags": [
-                    "Products"
-                ],
+                "tags": ["Products"],
                 "security": [
                     {
                         "bearerAuth": []
@@ -254,9 +244,7 @@
             },
             "get": {
                 "summary": "Lista todas os produtos / Busca produto por nome",
-                "tags": [
-                    "Products"
-                ],
+                "tags": ["Products"],
                 "parameters": [
                     {
                         "name": "q",
@@ -298,9 +286,7 @@
             },
             "put": {
                 "summary": "Atualiza um produto existente",
-                "tags": [
-                    "Products"
-                ],
+                "tags": ["Products"],
                 "security": [
                     {
                         "bearerAuth": []
@@ -318,7 +304,9 @@
                                         "name": "X AMERICANO",
                                         "description": "Pao, ovo, presunto e queiro",
                                         "categoryGuid": "a588aa13-f293-48b7-9661-45623fec27ab",
-                                        "price": 19.99
+                                        "price": 19.99,
+                                        "dayOfWeek": "Segunda",
+                                        "fileGuid": "2fd73bfc-e649-47fb-a03f-a5a5cb4ace5c"
                                     }
                                 }
                             }
@@ -357,9 +345,7 @@
         "/products/{guid}": {
             "delete": {
                 "summary": "Deleta um produto existente",
-                "tags": [
-                    "Products"
-                ],
+                "tags": ["Products"],
                 "security": [
                     {
                         "bearerAuth": []
@@ -396,9 +382,7 @@
             "post": {
                 "summary": "Cria um usuario",
                 "description": "Cria um usuario",
-                "tags": [
-                    "Users"
-                ],
+                "tags": ["Users"],
                 "security": [
                     {
                         "bearerAuth": []
@@ -454,9 +438,7 @@
         "/users/": {
             "get": {
                 "summary": "Lista todos os usuarios / Busca usuarios por nome",
-                "tags": [
-                    "Users"
-                ],
+                "tags": ["Users"],
                 "parameters": [
                     {
                         "name": "q",
@@ -498,9 +480,7 @@
             },
             "put": {
                 "summary": "Atualiza um usuario existente",
-                "tags": [
-                    "Users"
-                ],
+                "tags": ["Users"],
                 "security": [
                     {
                         "bearerAuth": []
@@ -557,9 +537,7 @@
             "post": {
                 "summary": "Cria um arquivo",
                 "description": "Cria um arquivo",
-                "tags": [
-                    "Files"
-                ],
+                "tags": ["Files"],
                 "security": [
                     {
                         "bearerAuth": []
@@ -652,6 +630,10 @@
                     "categoryGuid": {
                         "type": "string",
                         "description": "Identificador único da categoria"
+                    },
+                    "fileGuid": {
+                        "type": "string",
+                        "description": "Identificador único de arquivos"
                     }
                 }
             },
@@ -701,3 +683,4 @@
         }
     }
 }
+
