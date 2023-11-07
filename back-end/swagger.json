@@ -207,7 +207,9 @@
                                         "name": "X AMERICANO",
                                         "description": "Pao, ovo, presunto e queiro",
                                         "categoryGuid": "a588aa13-f293-48b7-9661-45623fec27ab",
-                                        "price": 19.99
+                                        "price": 19.99,
+                                        "dayOfWeek": "Segunda",
+                                        "fileGuid": "2fd73bfc-e649-47fb-a03f-a5a5cb4ace5c"
                                     }
                                 }
                             }
@@ -586,8 +588,113 @@
                     }
                 }
             }
+        },
+        "/orders": {
+            "post": {
+                "summary": "Cria um order",
+                "description": "Cria um order",
+                "tags": ["Orders"],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Orders"
+                            },
+                            "examples": {
+                                "Orders": {
+                                    "value": {
+                                        "userId": 1,
+                                        "total": 0,
+                                        "orderItem": [
+                                            {
+                                                "productId": 1,
+                                                "quantity": 12
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Orders"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Lista todas os orders / id do usuario",
+                "tags": ["Orders"],
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "Buscar pedidos relacionados a cada usuario",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Orders"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
         }
     },
+
     "components": {
         "schemas": {
             "Categories": {
@@ -670,6 +777,37 @@
                     },
                     "role": {
                         "type": "string"
+                    }
+                }
+            },
+            "Orders": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "number"
+                    },
+                    "guid": {
+                        "type": "string"
+                    },
+                    "userId": {
+                        "type": "number"
+                    },
+                    "total": {
+                        "type": "number"
+                    },
+                    "orderItem": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "productId": {
+                                    "type": "number"
+                                },
+                                "quantity": {
+                                    "type": "number"
+                                }
+                            }
+                        }
                     }
                 }
             },
