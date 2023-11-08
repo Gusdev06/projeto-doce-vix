@@ -1,8 +1,10 @@
+import dayjs from "dayjs";
+
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { ITokenProvider } from "@/shared/infra/adapters/cryptography/ITokenProvider";
 import { IService } from "@/shared/infra/protocols/IService";
-import dayjs from "dayjs";
+
 import { IGenerateToken } from "../../model/IGenerateToken";
 import { IUserRepository } from "../../repositories/IUserRepository";
 import { AuthUserValidator } from "./validation/AuthUserValidator";
@@ -12,15 +14,12 @@ export interface IRequest {
     password: string;
 }
 
-export class AuthUserService
-    implements
-    IService<IRequest, IGenerateToken>
-{
+export class AuthUserService implements IService<IRequest, IGenerateToken> {
     constructor(
         private readonly authUserValidator: AuthUserValidator,
         private readonly repository: IUserRepository,
         private readonly tokenProvider: ITokenProvider,
-    ) { }
+    ) {}
 
     async execute({ email, password }: IRequest): Promise<IGenerateToken> {
         await this.authUserValidator.validate({
@@ -45,7 +44,16 @@ export class AuthUserService
 
         return {
             token,
-            userId: userExists.id,
+            user: {
+                id: userExists.id,
+                guid: userExists.guid,
+                name: userExists.name,
+                email: userExists.email,
+                password: userExists.password,
+                role: userExists.role,
+                createdAt: userExists.createdAt,
+                updatedAt: userExists.updatedAt,
+            },
             role: userExists.role,
             expireIn,
         };
