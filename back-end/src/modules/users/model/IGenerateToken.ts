@@ -1,7 +1,9 @@
+import { IUser } from "./IUser";
+
 export interface IGenerateToken {
     id?: number;
     token: string;
-    userId: number;
+    user: IUser;
     expireIn: Date;
     role: string;
 }

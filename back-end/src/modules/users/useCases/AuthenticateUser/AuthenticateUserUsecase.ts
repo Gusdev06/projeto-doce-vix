@@ -6,9 +6,10 @@ import {
     IRequest,
 } from "../../services/usersServices/AuthUserService";
 
-
-export class AuthenticateUserUseCase implements IUseCase<IRequest, IGenerateToken> {
-    constructor(private readonly authUserService: AuthUserService) { }
+export class AuthenticateUserUseCase
+    implements IUseCase<IRequest, IGenerateToken>
+{
+    constructor(private readonly authUserService: AuthUserService) {}
 
     async execute({ email, password }: IRequest): Promise<IGenerateToken> {
         return this.authUserService.execute({

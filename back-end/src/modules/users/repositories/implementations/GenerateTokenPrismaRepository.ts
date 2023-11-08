@@ -6,7 +6,7 @@ import { IGenerateTokenPrisma } from "../../factories/GenerateTokenPrismaFactory
 import { IGenerateToken } from "../../model/IGenerateToken";
 import {
     IGenerateTokenRepository,
-    ISaveGenerateTokenDTO
+    ISaveGenerateTokenDTO,
 } from "../IGenerateTokenRepository";
 
 class GenerateTokenPrismaRepository implements IGenerateTokenRepository {
@@ -21,11 +21,13 @@ class GenerateTokenPrismaRepository implements IGenerateTokenRepository {
         this.prismaClient = context.prisma;
     }
 
-
     async findByUserId(userId: number): Promise<IGenerateToken | undefined> {
         const tokenP = await this.prismaClient.token.findFirst({
             where: {
                 userId,
+            },
+            include: {
+                user: true,
             },
         });
 
@@ -49,6 +51,9 @@ class GenerateTokenPrismaRepository implements IGenerateTokenRepository {
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
+            include: {
+                user: true,
+            },
         });
 
         if (!tokenP) return undefined;
@@ -58,4 +63,3 @@ class GenerateTokenPrismaRepository implements IGenerateTokenRepository {
 }
 
 export { GenerateTokenPrismaRepository };
-
