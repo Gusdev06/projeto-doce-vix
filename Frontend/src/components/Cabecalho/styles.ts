@@ -71,10 +71,8 @@ export const StatusRestaurante = styled.span`
   align-items: center;
   justify-content: center;
 
-  position: absolute;
-  right: 0;
-  margin-top: 12px;
-  margin-right: 12px;
+  margin-left: 16px;
+  margin-bottom: 16px;
 
   width: 101px;
   height: 28px;
@@ -86,10 +84,9 @@ export const StatusRestaurante = styled.span`
   border-radius: 30px;
 
   @media (max-width: 414px) {
-    width: 65px;
-    font-size: 12px;
-    margin-right: 6px;
-    margin-top: 6px;
+    width: 85px;
+    font-size: 14px;
+    margin-top: 16px;
   }
 `;
 

@@ -1,9 +1,10 @@
 import * as I from "@mui/icons-material";
 import * as M from "@mui/material";
-import { BiInfoCircle, BiLogoWhatsapp, BiPhone, BiTime } from "react-icons/bi";
-import { MdLocationOn } from "react-icons/md";
 import Login from "../Login";
 import * as S from "./styles";
+import Cadastro from "../Cadastro";
+import { BiInfoCircle, BiLogoWhatsapp, BiPhone, BiTime } from "react-icons/bi";
+import { MdLocationOn } from "react-icons/md";
 
 const Cabecalho = () => {
   return (
@@ -12,15 +13,16 @@ const Cabecalho = () => {
         <S.Logo />
       </S.DivLogo>
       <Login />
-      <S.StatusRestaurante>
-        Aberto
-      </S.StatusRestaurante>
+      <Cadastro />
       <S.DivTitulo>
         <h1>
           Doce<span>Vix</span> Restaurante e Lanchonete
         </h1>
         <p>Restaurante e lanchonete de comida brasileira. Bom almoço!!!</p>
       </S.DivTitulo>
+      <S.StatusRestaurante>
+        Aberto
+      </S.StatusRestaurante>
       <M.Accordion defaultExpanded={true}>
         <M.AccordionSummary expandIcon={<I.ExpandMore />}>
           <M.Typography>
