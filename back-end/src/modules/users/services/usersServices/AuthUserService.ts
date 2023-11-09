@@ -36,7 +36,11 @@ export class AuthUserService implements IService<IRequest, IGenerateToken> {
             );
 
         const token = await this.tokenProvider.generateToken(
-            { userId: userExists.id, role: userExists.role },
+            {
+                userId: userExists.id,
+                role: userExists.role,
+                email: userExists.email,
+            },
             "20d",
         );
 
@@ -44,6 +48,7 @@ export class AuthUserService implements IService<IRequest, IGenerateToken> {
 
         return {
             token,
+
             user: {
                 id: userExists.id,
                 guid: userExists.guid,
