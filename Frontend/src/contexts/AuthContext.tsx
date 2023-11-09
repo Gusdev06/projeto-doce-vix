@@ -4,8 +4,8 @@ import { api } from "../services/api/api";
 
 type User = {
   userId: number;
-  email: string;
   role: string;
+  email: string;
 };
 
 type SignInCredentials = {
@@ -33,12 +33,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const getToken = Cookies.get("token");
 
     if (getToken) {
-      const { userId, email, role } = JSON.parse(atob(getToken.split(".")[1]));
+      const { userId, role, email } = JSON.parse(atob(getToken.split(".")[1]));
 
       setUser({
         userId,
-        email,
         role,
+        email,
       });
 
       console.log(userId);
@@ -52,15 +52,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
         password,
       });
 
-      const { role, userId, token } = response.data;
+      const { userId, role, token } = response.data;
 
       Cookies.set("token", token, { expires: 20 });
 
       setUser({
         userId,
-        email,
         role,
+        email,
       });
+
+      console.log(user);
     } catch (err) {
       console.log(err);
     }

@@ -61,9 +61,9 @@ const Login = () => {
           />
           <S.BotaoLogar type="submit">Logar</S.BotaoLogar>
           <p>Esqueceu a senha?</p>
-          <h1> {user?.email}</h1>
         </form>
       </S.ModalStyleLogin>
+      <h1> {user?.email}</h1>
     </>
   );
 };
