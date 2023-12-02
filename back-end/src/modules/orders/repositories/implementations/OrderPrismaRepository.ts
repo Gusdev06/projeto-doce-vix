@@ -73,7 +73,9 @@ export class OrderPrismaRepository implements IOrderRepository {
                   OR: [
                       {
                           userId: {
-                              contains: search,
+                              user: {
+                                  contains: search,
+                              },
                           },
                       },
                   ],
@@ -116,3 +118,4 @@ export class OrderPrismaRepository implements IOrderRepository {
         };
     }
 }
+

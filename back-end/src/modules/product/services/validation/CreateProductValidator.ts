@@ -15,6 +15,7 @@ export class CreateProductValidator implements IValidator<ICreateProductDTO> {
         description,
         price,
         categoryGuid,
+        fileGuid,
     }: ICreateProductDTO): Promise<void> {
         const productExists = await this.repository.findByName(name);
         if (productExists)
@@ -40,5 +41,8 @@ export class CreateProductValidator implements IValidator<ICreateProductDTO> {
                 "category is missing",
                 HttpStatusCode.CONFLICT,
             );
+
+        if (!fileGuid)
+            throw new ErrorHandler("file is required", HttpStatusCode.CONFLICT);
     }
 }

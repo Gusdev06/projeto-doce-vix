@@ -31,6 +31,8 @@ export class CreateProductService
     }: ICreateProductDTO): Promise<IProduct> {
         if (dayOfWeek) await this.dayOfWeekCheckExists.validate(dayOfWeek);
 
+        await this.categoryCheckExists.validate(categoryGuid);
+
         await this.createProductValidator.validate({
             name,
             description,

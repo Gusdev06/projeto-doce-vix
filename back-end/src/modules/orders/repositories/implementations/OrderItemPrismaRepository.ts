@@ -64,3 +64,4 @@ export class OrderItemPrismaRepository implements IOrderItemRepository {
         return this.orderItemPrismaFactory.generate(order);
     }
 }
+
