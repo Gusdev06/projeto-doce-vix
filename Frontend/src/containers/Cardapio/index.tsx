@@ -1,11 +1,11 @@
+import axios from "axios";
+import { useQuery } from "react-query";
 import CardFood from "../../components/CardFood";
 import Carrinho from "../../components/Carrinho";
-import { useQuery } from "react-query";
-import axios from "axios";
 
+import * as I from "@mui/icons-material";
 import * as M from "@mui/material";
 import * as S from "./styles";
-import * as I from "@mui/icons-material";
 
 import Comida from "../../models/Comida";
 
@@ -68,7 +68,7 @@ const Cardapio = () => {
           </M.Typography>
         </M.AccordionDetails>
       </M.Accordion>
-      <M.Accordion>
+      {/* <M.Accordion>
         <M.AccordionSummary expandIcon={<I.ExpandMore />} id="panel1a-header">
           <M.Typography>
             <S.Icon src="https://cdn.discordapp.com/attachments/1101908244559048736/1149044328518402238/lanche.png" />
@@ -292,7 +292,7 @@ const Cardapio = () => {
             </S.TabPanelFoods>
           </M.Typography>
         </M.AccordionDetails>
-      </M.Accordion>
+      </M.Accordion> */}
       <Carrinho />
     </>
   );

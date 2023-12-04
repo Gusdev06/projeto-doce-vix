@@ -1,13 +1,12 @@
-import React from 'react';
-import EstiloGlobal, { Container, CabecalhoImg } from "./styles";
-import Cabecalho from "./components/Cabecalho";
-// import Cardapio from "./containers/Cardapio";
-import store from "./store";
-import { ToastContainer } from "react-toastify";
-import { Provider } from "react-redux";
 import { QueryClientProvider } from "react-query";
-import { queryClient } from "./services/queryClient";
+import { Provider } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import Cabecalho from "./components/Cabecalho";
+import Cardapio from "./containers/Cardapio";
 import { AuthProvider } from "./contexts/AuthContext";
+import { queryClient } from "./services/queryClient";
+import store from "./store";
+import EstiloGlobal, { CabecalhoImg, Container } from "./styles";
 
 function App() {
   return (
@@ -18,12 +17,13 @@ function App() {
           <CabecalhoImg />
           <Container>
             <Cabecalho />
+            <Cardapio />
           </Container>
           <ToastContainer autoClose={3000} />
         </Provider>
       </QueryClientProvider>
     </AuthProvider>
-  )
+  );
 }
 
 export default App;
