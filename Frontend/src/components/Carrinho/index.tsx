@@ -1,14 +1,15 @@
-import * as S from "./styles";
 import Modal from "react-modal";
-import Comida from "../../models/Comida";
-import { toast } from "react-toastify";
-import { ChangeEvent, useState } from "react";
-import { RootReducer } from "../../store";
-import { useDispatch, useSelector } from "react-redux";
-import { remover } from "../../store/reducers/carrinho";
-import { useForm } from "react-hook-form";
+import * as S from "./styles";
+
 import { yupResolver } from "@hookform/resolvers/yup";
+import { ChangeEvent, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { object, string } from "yup";
+import Comida from "../../models/food";
+import { RootReducer } from "../../store";
+import { remover } from "../../store/reducers/carrinho";
 
 Modal.setAppElement("#root");
 
@@ -45,7 +46,7 @@ const Carrinho = () => {
   const [opcaoEntrega, setOpcaoEntrega] = useState("retirada");
 
   const valorTotal = itens.reduce((acc: number, item: Comida) => {
-    acc += item.preco * item.quantidade;
+    acc += item.price * item.quantity;
 
     return acc;
   }, 0);
@@ -75,16 +76,15 @@ const Carrinho = () => {
     setChildModalIsOpen(false);
   };
 
-  // Função para construir a mensagem com base nos itens do carrinho
   function construirMensagemCarrinho(itens: Comida[]) {
     let mensagem = "Olá, gostaria de fazer um pedido:\n\n";
 
     for (const item of itens) {
-      mensagem += `${item.quantidade}x, ${item.item}`;
-      if (item.observacao) {
-        mensagem += ` (${item.observacao})`;
+      mensagem += `${item.quantity}x, ${item.name}`;
+      if (item.observation) {
+        mensagem += ` (${item.observation})`;
       }
-      mensagem += `, R$ ${item.preco * item.quantidade}\n`;
+      mensagem += `, R$ ${item.price * item.quantity}\n`;
     }
 
     mensagem += "\n------------\n";
@@ -98,7 +98,7 @@ const Carrinho = () => {
     mensagem += "Sem troco\n";
 
     const total = itens.reduce(
-      (acc, item) => acc + item.preco * item.quantidade,
+      (acc, item) => acc + item.price * item.quantity,
       0
     );
     mensagem += `*Total:* R$ ${total.toFixed(2)}\n\n`;
@@ -140,12 +140,14 @@ const Carrinho = () => {
         <S.ModalItens>
           {itens.map((item) => (
             <li key={item.id}>
-              <span>{item.quantidade}x</span>
+              <span>{item.quantity}x</span>
               <span>
-                {item.item}{" "}
-                <strong>{item.observacao ? `(${item.observacao})` : ""}</strong>
+                {item.name}{" "}
+                <strong>
+                  {item.observation ? `(${item.observation})` : ""}
+                </strong>
               </span>
-              <b>R${item.preco * item.quantidade}</b>
+              <b>R${item.price * item.quantity}</b>
               <S.BotaoDeletarComida
                 type="submit"
                 onClick={() => {
