@@ -4,7 +4,7 @@
 GET http://localhost:3333/categories HTTP/1.1
 
 ###
-GET http://localhost:3333/products?q=Beirutes HTTP/1.1
+GET http://localhost:3333/products HTTP/1.1
 
 ###
 

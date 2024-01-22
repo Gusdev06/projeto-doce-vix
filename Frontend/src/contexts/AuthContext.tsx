@@ -13,10 +13,19 @@ type SignInCredentials = {
   password: string;
 };
 
+type SignUpCredentials = {
+  name: string;
+  email: string;
+  password: string;
+};
+
 type AuthContextData = {
   signIn(credentials: SignInCredentials): Promise<void>;
+  signUp(credentials: SignUpCredentials): Promise<void>;
   user: User | undefined;
   isAuthenticated: boolean;
+  loginError: string | null;
+  logout: () => void;
 };
 
 type AuthProviderProps = {
@@ -27,6 +36,7 @@ export const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User>();
+  const [loginError, setLoginError] = useState<string | null>(null);
   const isAuthenticated = !!user;
 
   useEffect(() => {
@@ -40,8 +50,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
         role,
         email,
       });
-
-      console.log(userId);
     }
   }, []);
 
@@ -62,14 +70,41 @@ export function AuthProvider({ children }: AuthProviderProps) {
         email,
       });
 
-      console.log(user);
+      setLoginError(null);
     } catch (err) {
+      setLoginError("Credenciais inválidas. Verifique seu e-mail e senha.");
       console.log(err);
     }
   }
 
+  const signUp = async ({ name, email, password }: SignUpCredentials) => {
+    try {
+      await api.post("users/register", {
+        name,
+        email,
+        password,
+      });
+
+      setLoginError(null);
+
+      await signIn({ email, password });
+    } catch (err) {
+      setLoginError(
+        "Erro ao cadastrar o usuário. Verifique os dados fornecidos."
+      );
+      console.log(err);
+    }
+  };
+
+  const logout = () => {
+    Cookies.remove("token");
+    window.location.reload();
+  };
+
   return (
-    <AuthContext.Provider value={{ signIn, isAuthenticated, user }}>
+    <AuthContext.Provider
+      value={{ signIn, isAuthenticated, user, loginError, logout, signUp }}
+    >
       {children}
     </AuthContext.Provider>
   );

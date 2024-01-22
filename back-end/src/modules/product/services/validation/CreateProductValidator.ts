@@ -41,8 +41,5 @@ export class CreateProductValidator implements IValidator<ICreateProductDTO> {
                 "category is missing",
                 HttpStatusCode.CONFLICT,
             );
-
-        if (!fileGuid)
-            throw new ErrorHandler("file is required", HttpStatusCode.CONFLICT);
     }
 }

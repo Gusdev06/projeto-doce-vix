@@ -1,17 +1,33 @@
+import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
 import { TextField } from "@mui/material";
-import { FormEvent, useContext, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import * as S from "./styles";
+
+export type FormData = {
+  name: string;
+  email: string;
+  password: string;
+};
 
 const Login = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { user, signIn, isAuthenticated } = useContext(AuthContext);
+  const [childModalIsOpen, setChildModalIsOpen] = useState(false);
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    email: "",
+    password: "",
+  });
 
-  async function handleSubmit(event: FormEvent) {
+  const { user, signIn, isAuthenticated, loginError, logout, signUp } =
+    useContext(AuthContext);
+  const [reloadPage, setReloadPage] = useState(false);
+
+  async function handleSubmitLogin(event: FormEvent) {
     event.preventDefault();
 
     const data = {
@@ -19,8 +35,35 @@ const Login = () => {
       password,
     };
 
-    await signIn(data);
+    try {
+      await signIn(data);
+      setReloadPage(true);
+    } catch (error) {
+      console.log(error);
+    }
   }
+
+  const handleSubmitRegister = async (e: FormEvent) => {
+    e.preventDefault();
+
+    try {
+      await signUp(formData);
+      setReloadPage(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (reloadPage && isAuthenticated) {
+      window.location.reload();
+    }
+  }, [reloadPage, isAuthenticated]);
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
   const openModal = () => {
     setIsOpen(true);
@@ -30,16 +73,32 @@ const Login = () => {
     setIsOpen(false);
   };
 
+  const openChildModal = () => {
+    closeModal();
+    setChildModalIsOpen(true);
+  };
+
+  const closeChildModal = () => {
+    setChildModalIsOpen(false);
+  };
+
   return (
     <>
       <S.divBotao>
-        <S.BotaoLoginHeader onClick={openModal}>
-          <PersonIcon />
-          Login
-        </S.BotaoLoginHeader>
+        {isAuthenticated ? (
+          <S.BotaoDeslogarHeader onClick={logout}>
+            <LogoutIcon />
+            Sair
+          </S.BotaoDeslogarHeader>
+        ) : (
+          <S.BotaoLoginHeader onClick={openModal}>
+            <PersonIcon />
+            Login
+          </S.BotaoLoginHeader>
+        )}
       </S.divBotao>
       <S.ModalStyleLogin isOpen={modalIsOpen} onRequestClose={closeModal}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmitLogin}>
           <h1>Login</h1>
           <TextField
             value={email}
@@ -49,6 +108,8 @@ const Login = () => {
             id="outlined-basic"
             label="E-mail"
             variant="outlined"
+            autoComplete="email"
+            required
           />
           <TextField
             value={password}
@@ -58,12 +119,62 @@ const Login = () => {
             id="outlined-basic"
             label="Senha"
             variant="outlined"
+            autoComplete="current-password"
+            required
           />
           <S.BotaoLogar type="submit">Logar</S.BotaoLogar>
+          {loginError && <p className="loginError">{loginError}</p>}
           <p>Esqueceu a senha?</p>
+          <p>
+            Não possuí uma conta?{" "}
+            <span onClick={openChildModal}>Clique aqui</span>
+          </p>
         </form>
       </S.ModalStyleLogin>
-      <h1> {user?.email}</h1>
+      <S.ModalStyleRegister
+        isOpen={childModalIsOpen}
+        onRequestClose={closeChildModal}
+      >
+        <form onSubmit={handleSubmitRegister}>
+          <h1>Cadastro</h1>
+          <TextField
+            value={formData.name}
+            onChange={handleInputChange}
+            name="name"
+            type="text"
+            id="outlined-basic"
+            label="Nome"
+            variant="outlined"
+            autoComplete="name"
+            required
+          />
+          <TextField
+            value={formData.email}
+            onChange={handleInputChange}
+            name="email"
+            type="email"
+            id="outlined-basic"
+            label="E-mail"
+            variant="outlined"
+            autoComplete="email"
+            required
+          />
+          <TextField
+            value={formData.password}
+            onChange={handleInputChange}
+            name="password"
+            type="password"
+            id="outlined-basic"
+            label="Senha"
+            variant="outlined"
+            autoComplete="current-password"
+            required
+          />
+          <S.BotaoCadastrar type="submit">Cadastrar</S.BotaoCadastrar>
+          {loginError && <p className="loginError">{loginError}</p>}
+        </form>
+      </S.ModalStyleRegister>
+      {isAuthenticated ? <h1>Bem-vindo {user?.email}</h1> : ""}
     </>
   );
 };

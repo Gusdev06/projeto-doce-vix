@@ -1,0 +1,38 @@
+{
+    "userId": 1,
+    "total": 0,
+    "orderItem": [{
+     "productId": 1,
+     "quantity": 12
+    }]
+ }
+ 
+ 
+ {
+   "id": 22,
+   "guid": "169bf3f4-206e-43b3-97ec-153b1d222807",
+   "userId": 1,
+   "itens": [
+     {
+       "id": 40,
+       "guid": "8eac3359-444a-4656-b128-ffed3cd22929",
+       "product": {
+         "id": 1,
+         "name": "X AMERICANO",
+         "description": "Pao, ovo, presunto e queiro",
+         "price": 19.99
+       },
+       "quantity": 12,
+       "price": 239.88,
+       "orderId": 22,
+       "createdAt": "2023-12-24T18:18:49.837Z",
+       "updatedAt": "2023-12-24T18:18:49.837Z"
+     }
+   ],
+   "total": 239.88,
+   "status": "PREPARING",
+   "createdAt": "2023-12-24T18:18:49.814Z",
+   "updatedAt": "2023-12-24T18:18:49.814Z"
+ }
+ 
+ 

@@ -77,7 +77,7 @@ class ProductPrismaRepository implements IProductRepository {
                 price,
                 categoryId: categoriesP.id,
                 dayOfWeekId: dayOfWeekP?.id,
-                fileId: filesP.id,
+                fileId: filesP?.id,
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },

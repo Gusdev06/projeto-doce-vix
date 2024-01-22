@@ -6,7 +6,7 @@ interface ICreateProductDTO {
     price: number;
     categoryGuid: string;
     dayOfWeek?: string;
-    fileGuid: string;
+    fileGuid?: string;
 }
 
 interface IUpdateProductDTO {

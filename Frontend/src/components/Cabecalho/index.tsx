@@ -1,10 +1,9 @@
 import * as I from "@mui/icons-material";
 import * as M from "@mui/material";
-import Login from "../Login";
-import * as S from "./styles";
-import Cadastro from "../Cadastro";
 import { BiInfoCircle, BiLogoWhatsapp, BiPhone, BiTime } from "react-icons/bi";
 import { MdLocationOn } from "react-icons/md";
+import Login from "../Login";
+import * as S from "./styles";
 
 const Cabecalho = () => {
   return (
@@ -13,16 +12,13 @@ const Cabecalho = () => {
         <S.Logo />
       </S.DivLogo>
       <Login />
-      <Cadastro />
       <S.DivTitulo>
         <h1>
           Doce<span>Vix</span> Restaurante e Lanchonete
         </h1>
         <p>Restaurante e lanchonete de comida brasileira. Bom almoço!!!</p>
       </S.DivTitulo>
-      <S.StatusRestaurante>
-        Aberto
-      </S.StatusRestaurante>
+      <S.StatusRestaurante>Aberto</S.StatusRestaurante>
       <M.Accordion defaultExpanded={true}>
         <M.AccordionSummary expandIcon={<I.ExpandMore />}>
           <M.Typography>
@@ -40,7 +36,8 @@ const Cabecalho = () => {
                   <MdLocationOn />
                   <a
                     target="_blank"
-                    href="https://www.google.com/maps/dir//-20.515003,-54.639775/@-20.5148702,-54.7221258,12z?entry=ttu" rel="noreferrer"
+                    href="https://www.google.com/maps/dir//-20.515003,-54.639775/@-20.5148702,-54.7221258,12z?entry=ttu"
+                    rel="noreferrer"
                   >
                     <strong>Endereço</strong>: R. José de Magalhães, 256 - Vila
                     Clementino, São Paulo - SP, 04026-090
@@ -68,7 +65,8 @@ const Cabecalho = () => {
                   <BiLogoWhatsapp />
                   <a
                     target="_blank"
-                    href="https://api.whatsapp.com/send?phone=11976728089" rel="noreferrer"
+                    href="https://api.whatsapp.com/send?phone=11976728089"
+                    rel="noreferrer"
                   >
                     {" "}
                     <strong>WhatsApp:</strong> (11) 976728089

@@ -12,8 +12,7 @@ Content-Type: application/json
   "description": "Pao, ovo, presunto e queiro",
   "categoryGuid": "e53e9063-f4f7-450d-82ec-00b5c93507f7",
   "price": 19.99,
-  "dayOfWeek": "Segunda",
-  "fileGuid": "f651458e-a150-4dc8-a052-211bd0f10ad5"
+  "dayOfWeek": "Segunda"
 }
 
 
