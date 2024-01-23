@@ -2,7 +2,7 @@
 node_modules
 # Docker
 docker-compose.prod.yml
-docker-compose.yml
+
 
 # Node artifact files
 node_modules/
