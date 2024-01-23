@@ -50,6 +50,8 @@ class ProductPrismaRepository implements IProductRepository {
             },
         });
 
+        console.log(categoriesP);
+
         if (!categoriesP) return undefined;
 
         let dayOfWeekP;
@@ -62,20 +64,21 @@ class ProductPrismaRepository implements IProductRepository {
             });
         }
 
+        console.log(dayOfWeekP);
+
         const filesP = await this.prismaClient.file.findFirst({
             where: {
                 guid: fileGuid,
             },
         });
 
-        if (!filesP) return undefined;
-
+        console.log(filesP);
         const productP = await this.prismaClient.product.create({
             data: {
                 name,
                 description,
                 price,
-                categoryId: categoriesP.id,
+                categoryId: categoriesP?.id,
                 dayOfWeekId: dayOfWeekP?.id,
                 fileId: filesP?.id,
                 createdAt: new Date(),
@@ -87,6 +90,8 @@ class ProductPrismaRepository implements IProductRepository {
                 dayOfWeek: true,
             },
         });
+
+        console.log(productP);
 
         if (!productP) return undefined;
 

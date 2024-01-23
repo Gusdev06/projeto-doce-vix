@@ -1,9 +1,14 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/no-unresolved */
+
 import { CategoryCheckExists } from "@/modules/category/services/validation/CategoryCheckExists";
 import { DayOfWeekCheckExistsValidator } from "@/modules/dayOfWeek/services/validation/DayOfWeekCheckExistsValidator";
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
-import { IService } from "@/shared/infra/protocols/IService";
-
+import { IService } from "@/shared/protocols/service/IService";
 import { IProduct } from "../model/IProduct";
 import {
     ICreateProductDTO,
@@ -29,10 +34,6 @@ export class CreateProductService
         dayOfWeek,
         fileGuid,
     }: ICreateProductDTO): Promise<IProduct> {
-        if (dayOfWeek) await this.dayOfWeekCheckExists.validate(dayOfWeek);
-
-        await this.categoryCheckExists.validate(categoryGuid);
-
         await this.createProductValidator.validate({
             name,
             description,
@@ -41,6 +42,9 @@ export class CreateProductService
             dayOfWeek,
             fileGuid,
         });
+        if (dayOfWeek) await this.dayOfWeekCheckExists.validate(dayOfWeek);
+
+        await this.categoryCheckExists.validate(categoryGuid);
 
         const product = await this.productRepository.create({
             name,
@@ -53,7 +57,7 @@ export class CreateProductService
 
         if (!product)
             throw new ErrorHandler(
-                "Error on create product",
+                "Não foi possível criar o produto",
                 HttpStatusCode.BAD_REQUEST,
             );
 

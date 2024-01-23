@@ -10,7 +10,7 @@ Content-Type: application/json
 {
   "name": "X AMERICAsNO",
   "description": "Pao, ovo, presunto e queiro",
-  "categoryGuid": "e53e9063-f4f7-450d-82ec-00b5c93507f7",
+  "categoryGuid": "1a73d04d-b5cf-44bb-b72e-a33a3d0cf96b",
   "price": 19.99,
   "dayOfWeek": "Segunda"
 }

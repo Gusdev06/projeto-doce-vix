@@ -1,9 +1,9 @@
 import { CategoryPrismaFactory } from "@/modules/category/factories/CategoryPrismaFactory";
 import { CategoryPrismaRepository } from "@/modules/category/repositories/implementations/CategoryRepository";
-import { CreateCategoryValidator } from "@/modules/category/services/validation/CreateCategoryValidate";
 import { DayOfWeekPrismaFactory } from "@/modules/dayOfWeek/factories/DayOfWeekPrismaFactory";
 import { DayOfWeekPrismaRepository } from "@/modules/dayOfWeek/repositories/implementations/DayOfWeekRepository";
 import { DayOfWeekCheckExistsValidator } from "@/modules/dayOfWeek/services/validation/DayOfWeekCheckExistsValidator";
+import { CategoryCheckExists } from "./../../../category/services/validation/CategoryCheckExists";
 
 import { ProductPrismaFactory } from "../../factories/ProductPrismaFactory";
 import { ProductPrismaRepository } from "../../repositories/implementations/ProductRepository";
@@ -21,7 +21,7 @@ const categoryRepository = new CategoryPrismaRepository(categoryFactory);
 const dayOfWeekFactory = new DayOfWeekPrismaFactory();
 const dayOfWeekRepository = new DayOfWeekPrismaRepository(dayOfWeekFactory);
 
-const createCategoryValidator = new CreateCategoryValidator(categoryRepository);
+const categoryCheckExists = new CategoryCheckExists(categoryRepository);
 const dayOfWeekCheckExistsValidator = new DayOfWeekCheckExistsValidator(
     dayOfWeekRepository,
 );
@@ -29,7 +29,7 @@ const dayOfWeekCheckExistsValidator = new DayOfWeekCheckExistsValidator(
 const createProductValidator = new CreateProductValidator(productRepository);
 
 const createProductService = new CreateProductService(
-    createCategoryValidator,
+    categoryCheckExists,
     dayOfWeekCheckExistsValidator,
     createProductValidator,
     productRepository,

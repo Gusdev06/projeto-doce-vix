@@ -16,17 +16,14 @@ model Category {
   name        String
   description String
   Product     Product[]
-  File        File?     @relation(fields: [fileId], references: [id])
-  fileId      Int?
   createdAt   DateTime
   updatedAt   DateTime
 }
 
 model File {
-  id        Int        @id @default(autoincrement())
-  guid      String     @unique @default(uuid())
+  id        Int       @id @default(autoincrement())
+  guid      String    @unique @default(uuid())
   path      String
-  Category  Category[]
   Product   Product[]
   createdAt DateTime
   updatedAt DateTime
