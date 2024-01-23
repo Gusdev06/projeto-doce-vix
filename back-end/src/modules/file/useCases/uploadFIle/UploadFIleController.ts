@@ -5,8 +5,6 @@ import { IController } from "@/shared/infra/protocols/IController";
 
 import { UploadFileUseCase } from "./UploadFIleUseCase";
 
-UploadFileUseCase;
-
 class UploadFileController implements IController {
     constructor(private readonly useCase: UploadFileUseCase) {}
 
@@ -30,7 +28,10 @@ class UploadFileController implements IController {
         } catch (error) {
             next(error);
         }
+
+        return undefined;
     }
 }
 
 export { UploadFileController };
+

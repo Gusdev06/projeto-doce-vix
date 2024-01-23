@@ -6,7 +6,7 @@ export const multerConfig = {
     dest: resolve(__dirname, "..", "..", "uploads"),
     storage: diskStorage({
         destination: (request, file, callback) => {
-            callback(null, resolve(__dirname, "..", "..", "uploads"));
+            callback(null, resolve(__dirname, "..", "uploads"));
         },
         filename: (request, file, callback) => {
             randomBytes(16, (error, hash) => {
@@ -32,3 +32,4 @@ export const multerConfig = {
         }
     },
 } as Options;
+

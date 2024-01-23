@@ -1,7 +1,7 @@
 
 ###
 
-GET http://localhost:3333/products HTTP/1.1
+GET http://localhost:3333/categories HTTP/1.1
 
 ####
 POST http://localhost:3333/products HTTP/1.1
@@ -10,9 +10,8 @@ Content-Type: application/json
 {
   "name": "X AMERICAsNO",
   "description": "Pao, ovo, presunto e queiro",
-  "categoryGuid": "1a73d04d-b5cf-44bb-b72e-a33a3d0cf96b",
-  "price": 19.99,
-  "dayOfWeek": "Segunda"
+  "categoryGuid": "909b80b3-0ae3-4210-8faa-b7171f2315ea",
+  "price": 19.99
 }
 
 
