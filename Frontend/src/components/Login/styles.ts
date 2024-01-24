@@ -89,3 +89,14 @@ export const BotaoCadastrar = styled(Botao)`
     background-color: ${variables.verdeEscuro};
   }
 `;
+
+export const Usuario = styled.h1 `
+  font-size: 15px;
+  margin-top: -45px;
+
+  @media (max-width: 767px) {
+        font-size: 14px;
+        text-align: center;
+        margin-top: 15px;
+    }
+`;

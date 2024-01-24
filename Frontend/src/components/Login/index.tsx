@@ -174,7 +174,7 @@ const Login = () => {
           {loginError && <p className="loginError">{loginError}</p>}
         </form>
       </S.ModalStyleRegister>
-      {isAuthenticated ? <h1>Bem-vindo {user?.email}</h1> : ""}
+      {isAuthenticated ? <S.Usuario>Bem-vindo {user?.email.split('@')[0]}</S.Usuario> : ""}
     </>
   );
 };
