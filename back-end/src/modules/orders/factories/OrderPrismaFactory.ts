@@ -17,7 +17,6 @@ export class OrderPrismaFactory
             guid: entity.guid,
             userId: entity.userId,
             itens: entity.itens.map((orderItem) => ({
-                // changed from orderItens to itens
                 id: orderItem.id,
                 guid: orderItem.guid,
                 product: {
@@ -25,6 +24,11 @@ export class OrderPrismaFactory
                     name: orderItem.product.name,
                     description: orderItem.product.description,
                     price: orderItem.product.price,
+                },
+                OrderItemSize: {
+                    id: orderItem.OrderItemSize.id,
+                    name: orderItem.OrderItemSize.name,
+                    price: orderItem.OrderItemSize.price,
                 },
                 quantity: orderItem.quantity,
                 price: orderItem.price,
@@ -41,3 +45,4 @@ export class OrderPrismaFactory
         return result;
     }
 }
+

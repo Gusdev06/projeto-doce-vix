@@ -4,6 +4,7 @@ interface ICreateOrderItemDTO {
     orderId?: number;
     productId: number;
     quantity: number;
+    OrderItemSizeId: number;
 }
 
 interface IUpdateOrderItemDTO {
@@ -17,7 +18,9 @@ interface IOrderItemRepository {
         orderId,
         productId,
         quantity,
+        OrderItemSizeId,
     }: ICreateOrderItemDTO): Promise<IOrderItem | undefined>;
 }
 
 export { ICreateOrderItemDTO, IOrderItemRepository, IUpdateOrderItemDTO };
+

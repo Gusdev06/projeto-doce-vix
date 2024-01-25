@@ -100,16 +100,25 @@ model Order {
 }
 
 model OrderItem {
-  id        Int      @id @default(autoincrement())
-  guid      String   @unique @default(uuid())
-  productId Int
-  product   Product  @relation(fields: [productId], references: [id])
-  quantity  Int
+  id              Int           @id @default(autoincrement())
+  guid            String        @unique @default(uuid())
+  productId       Int
+  product         Product       @relation(fields: [productId], references: [id])
+  quantity        Int
+  price           Float
+  OrderItemSizeId Int
+  OrderItemSize   OrderItemSize @relation(fields: [OrderItemSizeId], references: [id])
+  createdAt       DateTime
+  updatedAt       DateTime
+  Order           Order         @relation(fields: [orderId], references: [id])
+  orderId         Int
+}
+
+model OrderItemSize {
+  id        Int         @id @default(autoincrement())
+  OrderItem OrderItem[]
+  name      String
   price     Float
-  createdAt DateTime
-  updatedAt DateTime
-  Order     Order    @relation(fields: [orderId], references: [id])
-  orderId   Int
 }
 
 enum OrderStatus {

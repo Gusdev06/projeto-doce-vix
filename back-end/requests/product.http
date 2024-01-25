@@ -1,17 +1,15 @@
 
 ###
 
-GET http://localhost:3333/categories HTTP/1.1
+GET http://localhost:3333/products HTTP/1.1
 
 ####
-POST http://localhost:3333/products HTTP/1.1
+POST http://localhost:3333/sizes HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "X AMERICAsNO",
-  "description": "Pao, ovo, presunto e queiro",
-  "categoryGuid": "909b80b3-0ae3-4210-8faa-b7171f2315ea",
-  "price": 19.99
+  "name": "Pequena",
+  "price": 0
 }
 
 
@@ -24,6 +22,7 @@ Content-Type: application/json
    "total": 0,
    "orderItem": [{
     "productId": 1,
+    "OrderItemSizeId": 3,
     "quantity": 12
    }]
 }

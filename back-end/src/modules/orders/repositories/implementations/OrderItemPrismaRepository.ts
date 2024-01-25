@@ -25,6 +25,7 @@ export class OrderItemPrismaRepository implements IOrderItemRepository {
         productId,
         quantity,
         orderId,
+        OrderItemSizeId,
     }: ICreateOrderItemDTO): Promise<IOrderItem | undefined> {
         const productP = await this.prismaClient.product.findFirst({
             where: {
@@ -34,17 +35,28 @@ export class OrderItemPrismaRepository implements IOrderItemRepository {
 
         if (!productP) return undefined;
 
-        const orderItemTotalPrice = productP.price * quantity;
+        const SizeP = await this.prismaClient.orderItemSize.findFirst({
+            where: {
+                id: OrderItemSizeId,
+            },
+        });
+
+        const orderItemTotalPrice = (productP.price + SizeP?.price) * quantity;
+
+        if (!SizeP) return undefined;
+
         const order = await this.prismaClient.orderItem.create({
             data: {
                 productId,
                 quantity,
-                orderId,
+                OrderItemSizeId,
+                orderId: orderId || 0,
                 price: orderItemTotalPrice,
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
             include: {
+                OrderItemSize: true,
                 Order: true,
                 product: true,
             },
@@ -56,7 +68,7 @@ export class OrderItemPrismaRepository implements IOrderItemRepository {
             },
             data: {
                 total: {
-                    increment: orderItemTotalPrice,
+                    increment: orderItemTotalPrice + 4,
                 },
             },
         });

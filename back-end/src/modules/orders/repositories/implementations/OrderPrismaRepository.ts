@@ -28,9 +28,19 @@ export class OrderPrismaRepository implements IOrderRepository {
             where: {
                 guid,
             },
+            include: {
+                itens: {
+                    include: {
+                        product: true,
+                        OrderItemSize: true,
+                    },
+                },
+            },
         });
 
         if (!order) return undefined;
+
+        return this.orderPrismaFactory.generate(order);
     }
 
     async create({
@@ -55,6 +65,7 @@ export class OrderPrismaRepository implements IOrderRepository {
                 itens: {
                     include: {
                         product: true,
+                        OrderItemSize: true,
                     },
                 },
             },
@@ -104,6 +115,7 @@ export class OrderPrismaRepository implements IOrderRepository {
                         itens: {
                             include: {
                                 product: true,
+                                OrderItemSize: true,
                             },
                         },
                     },

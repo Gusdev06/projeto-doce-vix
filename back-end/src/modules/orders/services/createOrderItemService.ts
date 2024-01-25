@@ -21,17 +21,20 @@ export class CreateOrderItemService
         orderId,
         productId,
         quantity,
+        OrderItemSizeId,
     }: ICreateOrderItemDTO): Promise<IOrderItem> {
         await this.createOrderValidator.validate({
             orderId,
             productId,
             quantity,
+            OrderItemSizeId,
         });
 
         const orderItem = await this.repository.create({
             orderId,
             productId,
             quantity,
+            OrderItemSizeId,
         });
 
         if (!orderItem)
@@ -43,3 +46,4 @@ export class CreateOrderItemService
         return orderItem;
     }
 }
+

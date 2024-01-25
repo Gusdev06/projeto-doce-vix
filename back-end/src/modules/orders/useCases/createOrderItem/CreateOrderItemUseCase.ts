@@ -15,11 +15,14 @@ export class CreateOrderItemUseCase
         orderId,
         productId,
         quantity,
+        OrderItemSizeId,
     }: ICreateOrderItemDTO): Promise<IOrderItem> {
         return this.createOrderItemService.execute({
             orderId,
             productId,
             quantity,
+            OrderItemSizeId,
         });
     }
 }
+

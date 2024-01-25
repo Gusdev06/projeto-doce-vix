@@ -1,3 +1,7 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-return-await */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable func-names */
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { IUseCase } from "@/shared/infra/protocols/IUseCase";
