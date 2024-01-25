@@ -50,6 +50,7 @@ export const DivTitulo = styled.div`
 
     @media (max-width: 767px) {
       font-size: 28px;
+      margin-top: -45px;
     }
   }
 
