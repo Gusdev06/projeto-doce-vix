@@ -3,7 +3,7 @@ import CardFood from "../../components/CardFood";
 import * as I from "@mui/icons-material";
 import * as M from "@mui/material";
 import { useContext } from "react";
-import Carrinho from "../../components/Carrinho";
+import Footer from "../../components/footer";
 import DishContext from "../../contexts/dishContext";
 import Comida from "../../models/food";
 import * as S from "./styles";
@@ -54,7 +54,7 @@ const Cardapio: React.FC = () => {
           </M.AccordionDetails>
         </M.Accordion>
       ))}
-      <Carrinho />
+      <Footer />
     </>
   );
 };

@@ -1,10 +1,8 @@
 import { useState } from "react";
 import Modal from "react-modal";
 import { useDispatch } from "react-redux";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Comida from "../../models/food";
-import { adicionar } from "../../store/reducers/carrinho";
 import * as S from "./styles";
 Modal.setAppElement("#root");
 
@@ -46,23 +44,25 @@ const CardFood = ({
         </S.DivInfos>
       </S.Card>
       <S.ModalStyle isOpen={modalIsOpen} onRequestClose={FecharModal}>
-        <div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <S.ModalDiv>
+          <S.DivImg>
+            {/* <div>
             <S.BiDishStyle />
             <S.FiXStyle onClick={FecharModal} />
-          </div>
-          <div style={{ textAlign: "center" }}>
+          </div> */}
             <S.ImgCardModal src="https://imgur.com/a/dGRXdxR" />
+          </S.DivImg>
+          <div>
+            <h2>{name}</h2>
+            {/* <p>{description}</p> */}
+            {/* <textarea
+                value={observation}
+                onChange={(e) => setObservacao(e.target.value)}
+                placeholder="Observações (opcional)"
+              /> */}
           </div>
-        </div>
-        <h2>{name}</h2>
-        <p>{description}</p>
-        <textarea
-          value={observation}
-          onChange={(e) => setObservacao(e.target.value)}
-          placeholder="Observações (opcional)"
-        />
-        <S.DivButtons>
+        </S.ModalDiv>
+        {/* <S.DivButtons>
           <S.BotaoAdicionar
             type="button"
             onClick={() => {
@@ -87,7 +87,7 @@ const CardFood = ({
             Adicionar
             <div>R${price}</div>
           </S.BotaoAdicionar>
-        </S.DivButtons>
+        </S.DivButtons> */}
       </S.ModalStyle>
     </>
   );

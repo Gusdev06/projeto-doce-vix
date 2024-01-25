@@ -38,6 +38,7 @@ export const BotaoLoginHeader = styled.button`
   align-items: center;
   gap: 4px;
   background-color: transparent;
+  color: #fff;
 
   margin: 16px;
   padding: 6px;

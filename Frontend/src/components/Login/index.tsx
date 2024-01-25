@@ -93,7 +93,7 @@ const Login = () => {
         ) : (
           <S.BotaoLoginHeader onClick={openModal}>
             <PersonIcon />
-            Login
+            Perfil
           </S.BotaoLoginHeader>
         )}
       </S.divBotao>

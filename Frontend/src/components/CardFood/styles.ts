@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import Modal from "react-modal";
-import variables from "../../styles/variables";
-import { FiX } from "react-icons/fi";
 import { BiDish } from "react-icons/bi";
+import { FiX } from "react-icons/fi";
 import { ImPlus } from "react-icons/im";
+import Modal from "react-modal";
+import styled from "styled-components";
 import { Botao } from "../../styles";
+import variables from "../../styles/variables";
 
 export const DiaSemana = styled.div`
   position: absolute;
@@ -69,9 +69,12 @@ export const ImgCard = styled.img`
   border: 1px solid #cacaca;
 `;
 
+export const DivImg = styled.div``;
+
 export const ImgCardModal = styled(ImgCard)`
-  width: 200px;
-  height: 120px;
+  width: 380px;
+  height: 380px;
+
   margin-bottom: 20px;
   border: none;
 
@@ -81,19 +84,25 @@ export const ImgCardModal = styled(ImgCard)`
     height: 140px;
   }
 `;
-
+export const ModalDiv = styled.div`
+  display: flex;
+`;
 export const ModalStyle = styled(Modal)`
   position: fixed;
   top: 50%;
+
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 600px;
-  width: 60%;
+  max-width: 800px;
+  max-height: 500px;
+  height: 100%;
+  width: 100%;
   border: 1px solid rgb(204, 204, 204);
   background: #fff;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
   outline: none;
   border-radius: 8px;
+
   padding: 20px;
 
   p {
