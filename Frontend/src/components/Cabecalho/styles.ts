@@ -44,6 +44,7 @@ export const DivTitulo = styled.div`
   padding-top: 88px;
   padding-bottom: 32px;
   background-color: #fff;
+  
   h1 {
     font-family: "Anton", sans-serif;
     color: ${variables.corPrincipal};

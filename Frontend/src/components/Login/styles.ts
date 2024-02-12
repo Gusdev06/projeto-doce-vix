@@ -38,7 +38,7 @@ export const BotaoLoginHeader = styled.button`
   align-items: center;
   gap: 4px;
   background-color: transparent;
-  color: #fff;
+  color: ${variables.corPrincipal};
 
   margin: 16px;
   padding: 6px;
@@ -50,7 +50,7 @@ export const BotaoLoginHeader = styled.button`
   font-size: 14px;
   font-weight: bold;
 
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
   &:hover {
     background-color: #c2c2c2;
   }
@@ -91,9 +91,11 @@ export const BotaoCadastrar = styled(Botao)`
   }
 `;
 
-export const Usuario = styled.h1 `
+export const Usuario = styled.h1`
   font-size: 15px;
   margin-top: -45px;
+  /* margin-right: 150px;
+  margin-bottom: 25px; */
 
   @media (max-width: 767px) {
         font-size: 14px;

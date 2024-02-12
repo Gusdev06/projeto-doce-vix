@@ -1,15 +1,16 @@
-import Modal from "react-modal";
-import * as S from "./styles";
-
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { object, string } from "yup";
-import Comida from "../../models/food";
 import { RootReducer } from "../../store";
 import { remover } from "../../store/reducers/carrinho";
+
+import Modal from "react-modal";
+import * as S from "./styles";
+import Comida from "../../models/food";
+
 
 Modal.setAppElement("#root");
 
@@ -44,6 +45,8 @@ const Carrinho = () => {
   const [childModalIsOpen, setChildModalIsOpen] = useState(false);
   const [opcaoPagamento, setOpcaoPagamento] = useState("pix");
   const [opcaoEntrega, setOpcaoEntrega] = useState("retirada");
+  const [endereco, setEndereco] = useState('')
+  const [nomeCliente, setNomeCliente] = useState('')
 
   const valorTotal = itens.reduce((acc: number, item: Comida) => {
     acc += item.price * item.quantity;
@@ -57,6 +60,14 @@ const Carrinho = () => {
 
   const handleOpcaoEntregaChange = (event: ChangeEvent<HTMLInputElement>) => {
     setOpcaoEntrega(event.target.value);
+  };
+
+  const handleEndereco = (event: ChangeEvent<HTMLInputElement>) => {
+    setEndereco(event.target.value);
+  };
+
+  const handleNomeCliente = (event: ChangeEvent<HTMLInputElement>) => {
+    setNomeCliente(event.target.value);
   };
 
   const openModal = () => {
@@ -82,20 +93,19 @@ const Carrinho = () => {
     for (const item of itens) {
       mensagem += `${item.quantity}x, ${item.name}`;
       if (item.observation) {
-        mensagem += ` (${item.observation})`;
+        mensagem += ` *(${item.observation})*`;
       }
       mensagem += `, R$ ${item.price * item.quantity}\n`;
     }
 
     mensagem += "\n------------\n";
-    mensagem += "*Em nome de:* Seu Nome\n";
-    mensagem += "Seu Telefone\n";
+    mensagem += `*Em nome de:* ${nomeCliente}\n`;
     mensagem += "------------\n";
-    mensagem += "Retirada no balcão\n";
+    mensagem += `*${opcaoEntrega}*\n`;
     mensagem += "------------\n";
+    mensagem += `*Endereço(opcional):* ${endereco}\n`;
     mensagem += "------------\n";
-    mensagem += "*Pagamento em dinheiro*\n";
-    mensagem += "Sem troco\n";
+    mensagem += `*${opcaoPagamento}*\n`;
 
     const total = itens.reduce(
       (acc, item) => acc + item.price * item.quantity,
@@ -112,6 +122,12 @@ const Carrinho = () => {
 
   // Crie o link do WhatsApp com a mensagem
   const linkWhatsApp = `https://api.whatsapp.com/send?phone=11943735978&text=${mensagemCarrinho}`;
+
+  const handleFinalizarCompra = () => {
+    window.open(linkWhatsApp, "_blank")
+    closeChildModal()
+    openChildModal()
+  };
 
   return (
     <form>
@@ -268,7 +284,7 @@ const Carrinho = () => {
           <S.ModalForm onSubmit={onSubmit(handleSubmit)}>
             <div>
               <label htmlFor="name">Nome:</label>
-              <input type="text" {...register("name")} />
+              <input onChange={handleNomeCliente} value={nomeCliente} type="text" /> {/*{...register("name")}*/}
               <S.Errors>{errors?.name?.message}</S.Errors>
               <label htmlFor="telefone">Telefone:</label>
               <input type="tel" id="telefone" {...register("telefone")} />
@@ -277,7 +293,7 @@ const Carrinho = () => {
             {opcaoEntrega === "delivery" && (
               <div>
                 <label htmlFor="address">Endereço:</label>
-                <input type="text" id="address" />
+                <input value={endereco} onChange={handleEndereco} type="text" id="address" />
               </div>
             )}
 
@@ -300,7 +316,7 @@ const Carrinho = () => {
                 </S.BotaoFinalizarIndisponivel>
               ) : (
                 <>
-                  <S.BotaoFinalizar onClick={openChildModal}>
+                  <S.BotaoFinalizar onClick={handleFinalizarCompra}>
                     <S.BsArrowRightCircleStyle />
                     Finalizar compra
                   </S.BotaoFinalizar>

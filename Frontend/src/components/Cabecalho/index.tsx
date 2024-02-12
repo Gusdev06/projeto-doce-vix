@@ -1,8 +1,10 @@
-import * as I from "@mui/icons-material";
-import * as M from "@mui/material";
 import { BiInfoCircle, BiLogoWhatsapp, BiPhone, BiTime } from "react-icons/bi";
 import { MdLocationOn } from "react-icons/md";
+
+import * as I from "@mui/icons-material";
+import * as M from "@mui/material";
 import * as S from "./styles";
+import Login from "../Login";
 
 const Cabecalho = () => {
   return (
@@ -10,7 +12,7 @@ const Cabecalho = () => {
       <S.DivLogo>
         <S.Logo />
       </S.DivLogo>
-
+      <Login />
       <S.DivTitulo>
         <h1>
           Doce<span>Vix</span> Restaurante e Lanchonete

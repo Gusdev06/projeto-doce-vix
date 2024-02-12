@@ -17,19 +17,16 @@ export const CardFooter = Styled.div`
 `;
 
 export const Nav = Styled.ul`
-display: flex;
-align-items: center;
-justify-content: space-between;
-text-decoration: none;
-
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
 `;
 
 export const NavItem = Styled.a`
-
-color: #fff;
-list-style: none;
-text-decoration: none;
-
+  color: #fff;
+  list-style: none;
+  text-decoration: none;
 `;
 
 export const Container = Styled.div`
@@ -38,7 +35,5 @@ export const Container = Styled.div`
   margin: 0 auto;
 
   @media (max-width: 767px) {
-
- 
   }
 `;
