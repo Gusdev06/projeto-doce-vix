@@ -43,12 +43,13 @@ const CardFood = ({
         </S.DivInfos>
       </S.Card>
       <S.ModalStyle isOpen={modalIsOpen} onRequestClose={FecharModal}>
+        <div>
+          <S.BiDishStyle />
+          <S.FiXStyle onClick={FecharModal} />
+        </div>
+        <div>
         <S.ModalDiv>
           <S.DivImg>
-            <div>
-              <S.BiDishStyle />
-              <S.FiXStyle onClick={FecharModal} />
-            </div>
             <S.ImgCardModal src="https://imgur.com/a/dGRXdxR" />
           </S.DivImg>
           <div>
@@ -61,6 +62,7 @@ const CardFood = ({
             />
           </div>
         </S.ModalDiv>
+        </div>
         <S.DivButtons>
           <S.BotaoAdicionar
             type="button"

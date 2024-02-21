@@ -18,6 +18,7 @@ export const DiaSemana = styled.div`
   font-weight: bold;
   padding: 8px;
   height: 20px;
+  
 
   background-color: #b3365b;
   color: #fff;
@@ -34,6 +35,7 @@ export const Preco = styled.div`
 
 export const Card = styled.div`
   margin-top: 16px;
+  
   display: flex;
   padding: 10px;
   border-radius: 7px;
@@ -48,6 +50,7 @@ export const DivInfos = styled.div`
   p {
     font-size: 12px;
     color: ${variables.cinzaEscuro};
+    
   }
 
   span {
@@ -72,9 +75,8 @@ export const ImgCard = styled.img`
 export const DivImg = styled.div``;
 
 export const ImgCardModal = styled(ImgCard)`
-  width: 380px;
-  height: 380px;
-
+  width: 300px;
+  height: 300px;
   margin-bottom: 20px;
   border: none;
 
@@ -86,15 +88,15 @@ export const ImgCardModal = styled(ImgCard)`
 `;
 export const ModalDiv = styled.div`
   display: flex;
+  
 `;
 export const ModalStyle = styled(Modal)`
   position: fixed;
   top: 50%;
-
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 800px;
-  max-height: 500px;
+  max-width: 700px;
+  max-height: 400px;
   height: 100%;
   width: 100%;
   border: 1px solid rgb(204, 204, 204);
@@ -103,17 +105,25 @@ export const ModalStyle = styled(Modal)`
   outline: none;
   border-radius: 8px;
 
-  padding: 20px;
+  padding: 15px 20px;
+  
 
+  h2 {
+    margin-left: 70px;
+    
+  }
+  
   p {
     margin-top: 6px;
     margin-bottom: 16px;
+    margin-left: 70px;
   }
 
   textarea {
     width: 100%;
     display: block;
     resize: none;
+    margin-left: 60px;
 
     padding: 10px;
     margin-bottom: 16px;
@@ -121,7 +131,10 @@ export const ModalStyle = styled(Modal)`
     border: none;
     border-top: 1px solid #c3c3c3;
     font-weight: bold;
+    
   }
+
+
 
   @media (max-width: 767px) {
     width: 80%;
@@ -130,8 +143,10 @@ export const ModalStyle = styled(Modal)`
 
 export const DivButtons = styled.div`
   display: flex;
-  justify-content: right;
+  justify-content: flex-end;
   gap: 8px;
+  margin-left: -10px;
+  transform: translateX(-110px) translateY(-60px);
 `;
 
 export const BotaoAdicionar = styled(Botao)`
@@ -139,6 +154,8 @@ export const BotaoAdicionar = styled(Botao)`
   background-color: ${variables.corBotoesAceitar};
   font-weight: bold;
   transition: all 0.2s ease;
+  
+  
 
   &:hover {
     background-color: ${variables.verdeEscuro};
@@ -157,6 +174,9 @@ export const BotaoAdicionar = styled(Botao)`
 export const FiXStyle = styled(FiX)`
   cursor: pointer;
   transition: all 0.1s ease;
+  margin-left: 650px;
+  position: relative;
+  top: -23px;
 
   &:hover {
     color: #c3c3c3;
