@@ -55,6 +55,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   async function signIn({ email, password }: SignInCredentials) {
     try {
+      
       const response = await api.post("login", {
         email,
         password,
@@ -63,6 +64,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const { userId, role, token } = response.data;
 
       Cookies.set("token", token, { expires: 20 });
+
+      
 
       setUser({
         userId,

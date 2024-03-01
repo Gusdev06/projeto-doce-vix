@@ -34,13 +34,12 @@ const Login = () => {
       email,
       password,
     };
-
     try {
       await signIn(data);
       setReloadPage(true);
     } catch (error) {
       console.log(error);
-    }
+    } 
   }
 
   const handleSubmitRegister = async (e: FormEvent) => {

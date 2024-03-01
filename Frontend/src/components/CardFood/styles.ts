@@ -70,6 +70,9 @@ export const ImgCard = styled.img`
   height: 94px;
   border-radius: 8px;
   border: 1px solid #cacaca;
+  
+
+
 `;
 
 export const DivImg = styled.div``;
@@ -82,8 +85,10 @@ export const ImgCardModal = styled(ImgCard)`
 
   @media (max-width: 767px) {
     margin-top: 12px;
-    width: 100%;
-    height: 140px;
+    width: 80px;
+    height: 110px;
+    margin-right: 0;
+    
   }
 `;
 export const ModalDiv = styled.div`
@@ -110,6 +115,10 @@ export const ModalStyle = styled(Modal)`
 
   h2 {
     margin-left: 70px;
+
+    @media (max-width: 767px) {
+        font-size: 18px;
+    }
     
   }
   
@@ -117,6 +126,10 @@ export const ModalStyle = styled(Modal)`
     margin-top: 6px;
     margin-bottom: 16px;
     margin-left: 70px;
+
+    @media (max-width: 767px) {
+        font-size: 12px;
+    }
   }
 
   textarea {
@@ -131,6 +144,13 @@ export const ModalStyle = styled(Modal)`
     border: none;
     border-top: 1px solid #c3c3c3;
     font-weight: bold;
+
+    @media (max-width: 767px) {
+        font-size: 12px;
+        width: 65%;
+        display: block;
+        
+    }
     
   }
 
@@ -146,7 +166,22 @@ export const DivButtons = styled.div`
   justify-content: flex-end;
   gap: 8px;
   margin-left: -10px;
-  transform: translateX(-110px) translateY(-60px);
+  transform: translateX(-55px) translateY(-60px);
+
+
+  @media (max-width: 767px) {
+    justify-content: center;
+    transform: translate(0,0);
+    margin-left: 0;
+    margin-top: 20px;
+    
+
+    button {
+      font-size: 14px; /* Reduz o tamanho do texto do botão para telas menores */
+      padding: 6px 10px; /* Reduz o espaçamento interno do botão para telas menores */
+      width: auto;
+    }
+  }
 `;
 
 export const BotaoAdicionar = styled(Botao)`
@@ -160,6 +195,7 @@ export const BotaoAdicionar = styled(Botao)`
   &:hover {
     background-color: ${variables.verdeEscuro};
   }
+
 
   div {
     margin-left: 12px;
