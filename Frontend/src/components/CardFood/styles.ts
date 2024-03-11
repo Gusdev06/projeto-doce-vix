@@ -50,7 +50,6 @@ export const DivInfos = styled.div`
   p {
     font-size: 12px;
     color: ${variables.cinzaEscuro};
-    
   }
 
   span {
